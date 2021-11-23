@@ -1,9 +1,22 @@
+<?php 
+
+  session_start();
+  include('./admin/includes/dbcon.php');
+
+  if($_SESSION['username'] ?? '' != ''){
+    echo "<script type='text/javascript'> document.location ='./admin/index.php'; </script>";
+  }
+
+  include('./admin/controllers/userLogin.php');
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Assets | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,16 +38,24 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-
-      <form action="#" method="post">
+        <?php
+            if($_SESSION['errorMessage'] != ""){
+        ?>
+          <br>
+          <div class="text-danger text-center">
+              <?php echo $_SESSION['errorMessage']; $_SESSION['errorMessage'] = null; ?>
+          </div>
+          <br>
+        <?php } ?>
+      <form method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="text" required name="username" class="form-control" placeholder="Username">
           <div class="input-group-append input-group-text">
               <span class="fas fa-user"></span>
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" required name="password" class="form-control" placeholder="Password">
           <div class="input-group-append input-group-text">
               <span class="fas fa-lock"></span>
           </div>
@@ -50,8 +71,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <!-- <button type="submit" class="btn btn-sm btn-primary btn-block btn-flat">Sign In</button> -->
-            <a type="button" href="./admin" class="btn btn-sm btn-primary btn-block btn-flat">Sign In</a>
+            <button type="submit" name="login" class="btn btn-sm btn-primary btn-block btn-flat">Sign In</button>
           </div>
           <!-- /.col -->
         </div>

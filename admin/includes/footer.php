@@ -6,7 +6,7 @@
         <hr>
     </div>
     <div class="mt-3 p-3">
-        <a href="../" class="btn btn-sm btn-block btn-primary">Logout</a>
+        <a href="./controllers/logout.php" class="btn btn-sm btn-block btn-primary">Logout</a>
     </div>
 </aside>
 <!-- /.control-sidebar -->

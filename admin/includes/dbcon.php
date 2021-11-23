@@ -3,7 +3,7 @@
     define('DB_HOST','localhost');
     define('DB_USER','root');
     define('DB_PASS','chris');
-    define('DB_NAME','mfinance');
+    define('DB_NAME','hcclassets');
 
     // Establish database connection.
     try

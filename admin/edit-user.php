@@ -1,5 +1,12 @@
 <?php
 
+    if(!isset($_REQUEST['id'])){
+        exit("Error: No reference found");
+    }
+    else{
+        $ref = $_REQUEST['id'];
+    }
+
     session_start();
     include('./includes/dbcon.php');
 
@@ -8,6 +15,18 @@
     }
 
     include('./controllers/usersCon.php');
+
+    $sql = "SELECT * FROM users WHERE id='".$ref."'";
+    $statement = $db->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+    if(sizeof($result) > 0){
+        $r = $result[0];
+    }
+    else{
+        $_SESSION['errorMessage'] = 'User Not Found';
+    }
 
 ?>
 
@@ -50,7 +69,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Users</a></li>
-                            <li class="breadcrumb-item active">New User</li>
+                            <li class="breadcrumb-item active">Edit User</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -68,49 +87,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                        <?php
+                            if($_SESSION['errorMessage'] != ""){
+                        ?>
+                            <div class="alert alert-danger">
+                                <?php echo $_SESSION['errorMessage']; $_SESSION['errorMessage'] = null; ?>
+                            </div>
+                            <br>
+                        <?php } ?>
                             <form method="post">
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Firstname
-                                                <input type="text" name="fname" required placeholder="Firstname" class="form-control">
+                                                <input type="text" value="<?php echo $r['firstname']; ?>" name="fname" required placeholder="Firstname" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Lastname
-                                                <input type="text" name="lname" required placeholder="Lastname" class="form-control">
+                                                <input type="text" value="<?php echo $r['lastname']; ?>" name="lname" required placeholder="Lastname" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Employee Id
-                                                <input type="text" name="natid" required placeholder="Employee Id" class="form-control">
+                                                <input type="text" value="<?php echo $r['nationalid']; ?>" name="natid" required placeholder="Employee Id" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Email
-                                                <input type="email" name="email" required placeholder="Email" class="form-control">
+                                                <input type="email" value="<?php echo $r['email']; ?>" name="email" required placeholder="Email" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Phone Number
-                                                <input type="text" name="phone" required placeholder="Phone Number" class="form-control">
+                                                <input type="text" value="<?php echo $r['phone']; ?>" name="phone" required placeholder="Phone Number" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Date of Birth
-                                                <input type="date" name="dat" required class="form-control">
+                                                <input type="date" value="<?php echo $r['dateofbirth']; ?>" name="dat" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Gender
-                                                <select name="gender" required class="form-control">
+                                                <select name="gender" value="<?php echo $r['gender']; ?>" required class="form-control">
                                                     <option value="" selected disabled>choose...</option>
                                                     <option value="Female">Female</option>
                                                     <option value="Male">Male</option>
@@ -120,31 +147,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Username
-                                                <input type="text" name="uname" required placeholder="Username" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                User Role
-                                                <select name="role" required class="form-control">
-                                                    <option value="" selected disabled>choose...</option>
-                                                    <option value="Admin">Admin</option>
-                                                    <option value="Clerk">Clerk</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                Password
-                                                <input type="password" name="pwd" id="pass1" required placeholder="Password" class="form-control">
+                                                <input type="text" name="uname" value="<?php echo $r['username']; ?>" required placeholder="Username" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <br><br>
                                     <div class="text-center">
-                                        <button type="reset" class="btn btn-sm btn-danger">Reset</button>
-                                        <button type="submit" name="addRec" class="btn btn-sm btn-primary">
-                                            Save
+                                        <button type="submit" name="editRec" class="btn btn-sm btn-primary">
+                                            Update
                                         </button>
                                     </div>
                                 </fieldset>

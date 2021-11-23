@@ -14,7 +14,7 @@
             <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-            <a href="#" class="d-block">Chriss waLah</a>
+            <a href="#" class="d-block"><?php echo $_SESSION['username']; ?></a>
             </div>
         </div>
 
@@ -35,7 +35,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list-ul"></i>
                         <p>
-                            Stock
+                            Assets
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>

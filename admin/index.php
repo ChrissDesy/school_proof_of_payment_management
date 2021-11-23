@@ -1,3 +1,14 @@
+<?php
+
+    session_start();
+    include('./includes/dbcon.php');
+
+    if(!isset($_SESSION['username'])){
+        echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
+    }
+
+?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from

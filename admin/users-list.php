@@ -1,3 +1,23 @@
+<?php
+
+    session_start();
+    include('./includes/dbcon.php');
+    include('./controllers/usersCon.php');
+
+    if(!isset($_SESSION['username'])){
+        echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
+    }
+
+    //get employees
+    $sql = "SELECT * FROM users";
+    $statement = $db->prepare($sql);
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+    // echo $result;
+
+?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -51,108 +71,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Table With Full Features</h3>
+                            <div class="row">
+                                <div class="col-md-6"><h3 class="card-title">List of Users</h3></div>
+                                <div class="col-md-6 text-right">
+                                    <a href="./new-user.php" class="btn btn-sm btn-outline-primary">
+                                        <i class="fa fa-plus"></i>&nbsp;&nbsp;Add
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                </tr>
-                                <tr>
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 5.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td>5</td>
-                                <td>C</td>
-                                </tr>
-                                <tr>
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 5.5
-                                </td>
-                                <td>Win 95+</td>
-                                <td>5.5</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Trident</td>
-                                <td>Internet
-                                    Explorer 6
-                                </td>
-                                <td>Win 98+</td>
-                                <td>6</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Trident</td>
-                                <td>Internet Explorer 7</td>
-                                <td>Win XP SP2+</td>
-                                <td>7</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Trident</td>
-                                <td>AOL browser (AOL desktop)</td>
-                                <td>Win XP</td>
-                                <td>6</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Gecko</td>
-                                <td>Firefox 1.0</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.7</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Gecko</td>
-                                <td>Firefox 1.5</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Gecko</td>
-                                <td>Firefox 2.0</td>
-                                <td>Win 98+ / OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Gecko</td>
-                                <td>Firefox 3.0</td>
-                                <td>Win 2k+ / OSX.3+</td>
-                                <td>1.9</td>
-                                <td>A</td>
-                                </tr>
-                                <tr>
-                                <td>Gecko</td>
-                                <td>Camino 1.0</td>
-                                <td>OSX.2+</td>
-                                <td>1.8</td>
-                                <td>A</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Gender</th>
+                                            <th>Phone</th>
+                                            <th>Employee&nbsp;Id</th>
+                                            <th>Birth&nbsp;Date</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($result as $r) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $r['username']; ?></td>
+                                                <td><?php echo $r['firstname'] . ' '.$r['lastname'] ; ?></td>
+                                                <td><?php echo $r['email']; ?></td>
+                                                <td><?php echo $r['gender']; ?></td>
+                                                <td><?php echo $r['phone']; ?></td>
+                                                <td><?php echo $r['nationalid']; ?></td>
+                                                <td><?php echo $r['dateofbirth']; ?></td>
+                                                <td><?php echo $r['role']; ?></td>
+                                                <td><?php echo $r['status']; ?></td>
+                                                <td>
+                                                    <a class="text-primary mr-3" href="./edit-user.php?id=<?php echo $r['id']; ?>">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <span class="text-danger" data-target="#docs" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
+                                                        <i class="fa fa-trash"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -168,6 +139,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     </div>
     <!-- ./wrapper -->
+
+    <div class="modal fade" id="docs">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Record</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <div align="center">
+                            <h3>Confirm Delete Record.?</h3>
+                            <input type="text" class="form-control" id="myId2" name="id" style="display:none;">
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-sm btn-danger" type="submit" name="deleteRec" class="form-control">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     
 
     <!-- REQUIRED SCRIPTS -->
@@ -176,6 +174,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         $(function () {
             $("#example1").DataTable();
+        });
+
+        $("#docs").on('show.bs.modal', function (e) {
+            
+            var Id = $(e.relatedTarget).data('myid');
+
+            // console.log(obj);
+			$('#myId2').val(Id);
         });
     </script>
     
