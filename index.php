@@ -41,7 +41,6 @@
         <?php
             if($_SESSION['errorMessage'] != ""){
         ?>
-          <br>
           <div class="text-danger text-center">
               <?php echo $_SESSION['errorMessage']; $_SESSION['errorMessage'] = null; ?>
           </div>

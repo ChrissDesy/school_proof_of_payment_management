@@ -16,9 +16,14 @@
             if(sizeof($result) > 0){
                 $r = $result[0];
                 
-                $_SESSION['username'] = $r['firstname']. ' '. $r['lastname'];
+                if($r['status'] == 'active'){
+                    $_SESSION['username'] = $r['firstname']. ' '. $r['lastname'];
                 
-                header("location:./admin/index.php");
+                    header("location:./admin/index.php");
+                }
+                else{
+                    $_SESSION['errorMessage'] = 'Account Disabled or Deleted';
+                }
             }
             else{
                 $_SESSION['errorMessage'] = 'Invalid Credentials';
