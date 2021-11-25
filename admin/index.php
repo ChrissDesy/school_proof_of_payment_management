@@ -66,10 +66,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">CPU Traffic</span>
+                                <span class="info-box-text">Asset Types</span>
                                 <span class="info-box-number">
-                                10
-                                <small>%</small>
+                                    10
                                 </span>
                             </div>
                             <!-- /.info-box-content -->
@@ -79,11 +78,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-thumbs-down"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Likes</span>
-                                <span class="info-box-number">41,410</span>
+                                <span class="info-box-text">Disposed</span>
+                                <span class="info-box-number">41</span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -96,10 +95,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-list-ul"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Sales</span>
+                                <span class="info-box-text">Assets</span>
                                 <span class="info-box-number">760</span>
                             </div>
                             <!-- /.info-box-content -->
@@ -109,11 +108,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-users"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">New Members</span>
-                                <span class="info-box-number">2,000</span>
+                                <span class="info-box-text">Users</span>
+                                <span class="info-box-number">2</span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -130,7 +129,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- TABLE: LATEST ORDERS -->
                             <div class="card">
                             <div class="card-header border-transparent">
-                                <h3 class="card-title">Latest Orders</h3>
+                                <h3 class="card-title">Latest Assets</h3>
 
                                 <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -144,65 +143,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <div class="table-responsive">
-                                <table class="table m-0">
-                                    <thead>
-                                    <tr>
-                                    <th>Order ID</th>
-                                    <th>Item</th>
-                                    <th>Status</th>
-                                    <th>Popularity</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                    <td>Call of Duty IV</td>
-                                    <td><span class="badge badge-success">Shipped</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="badge badge-warning">Pending</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                    <td>iPhone 6 Plus</td>
-                                    <td><span class="badge badge-danger">Delivered</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="badge badge-info">Processing</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                    <td>Samsung Smart TV</td>
-                                    <td><span class="badge badge-warning">Pending</span></td>
-                                    <td>
-                                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                    </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                    <table class="table m-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Date</th>
+                                                <th>Serial Number</th>
+                                                <th>Asset Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Add New</a>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All</a>
                             </div>
                             <!-- /.card-footer -->
                             </div>
