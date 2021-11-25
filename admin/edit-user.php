@@ -44,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Favicon -->
 <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Assets | Home</title>
+  <title>Assets | Edit User</title>
 
   <?php include('./includes/styles.php'); ?>
   
