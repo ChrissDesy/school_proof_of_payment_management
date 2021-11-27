@@ -1,8 +1,37 @@
 <?php
 
-    $showDrop = '';
+    $showDrop = ''; // change between assets, reports, users, settings
 
     $url = $_SERVER['PHP_SELF'];
+
+    if(
+        $url == '/my-assets/admin/new-item.php' ||
+        $url == '/my-assets/admin/info-item.php' ||
+        $url == '/my-assets/admin/items-list.php' ||
+        $url == '/my-assets/admin/edit-item.php'
+    ){
+        $showDrop = 'assets';
+    }
+    else if(
+        $url == '/my-assets/admin/new-user.php' ||
+        $url == '/my-assets/admin/edit-user.php' ||
+        $url == '/my-assets/admin/users-list.php'
+    ){
+        $showDrop = 'users';
+    }
+    else if(
+        $url == '/my-assets/admin/report.php'
+    ){
+        $showDrop = 'reports';
+    }
+    else if(
+        $url == '/my-assets/admin/asset-types.php'
+    ){
+        $showDrop = 'settings';
+    }
+    else{
+        $showDrop = '';
+    }
 
 ?>
 
@@ -39,8 +68,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview <?php if($showDrop == 'assets') echo 'menu-open'; ?>">
+                    <a href="#" class="nav-link <?php if($showDrop == 'assets') echo 'active'; ?>">
                         <i class="nav-icon fas fa-list-ul"></i>
                         <p>
                             Assets
@@ -51,19 +80,19 @@
                         <li class="nav-item">
                             <a href="new-item.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/new-item.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>New Item</p>
+                                <p>New Asset</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="items-list.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/items-list.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>All Items</p>
+                                <p>All Assets</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview <?php if($showDrop == 'reports') echo 'menu-open'; ?>">
+                    <a href="#" class="nav-link <?php if($showDrop == 'reports') echo 'active'; ?>">
                         <i class="nav-icon fas fa-chart-area"></i>
                         <p>
                             Reports
@@ -85,8 +114,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview <?php if($showDrop == 'users') echo 'menu-open'; ?>">
+                    <a href="#" class="nav-link <?php if($showDrop == 'users') echo 'active'; ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
@@ -108,8 +137,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview <?php if($showDrop == 'settings') echo 'menu-open'; ?>">
+                    <a href="#" class="nav-link <?php if($showDrop == 'settings') echo 'active'; ?>">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
                             Settings

@@ -176,11 +176,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-4 text-right">
                                             <?php if($h == 'None') { ?>
                                                 <button data-toggle="modal" data-target="#assign" class="btn btn-sm btn-outline-primary">
-                                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;Assign
+                                                    <i class="fa fa-link"></i>&nbsp;&nbsp;Assign
                                                 </button>
                                             <?php } else { ?>
                                                 <button data-toggle="modal" data-target="#unassign" class="btn btn-sm btn-outline-danger">
-                                                    <i class="fa fa-minus"></i>&nbsp;&nbsp;Un-assign
+                                                    <i class="fa fa-unlink"></i>&nbsp;&nbsp;Un-assign
                                                 </button>
                                             <?php } ?>
                                         </div>

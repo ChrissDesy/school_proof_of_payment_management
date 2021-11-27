@@ -102,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <td><?php echo $r['description']; ?></td>
                                                 <td><?php echo $r['status']; ?></td>
                                                 <td>
-                                                    <a class="text-primary mr-3" data-target="#edit" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
+                                                    <a class="text-warning mr-3" data-target="#edit" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <span class="text-danger" data-target="#delete" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">

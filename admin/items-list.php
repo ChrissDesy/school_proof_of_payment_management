@@ -112,10 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <td><?php echo $r['status']; ?></td>
                                                 <td>
                                                     <span class="text-info" title="View Description" data-target="#info" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-eye"></i>
+                                                        <i class="fa fa-list-alt"></i>
                                                     </span>&nbsp;
                                                     <a class="text-primary" title="View Asset Info" href="./info-item.php?id=<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-link"></i>
+                                                        <i class="fa fa-eye"></i>
                                                     </a>&nbsp;
                                                     <a class="text-warning" title="Edit Asset" href="./edit-item.php?id=<?php echo $r['id']; ?>">
                                                         <i class="fa fa-edit"></i>
