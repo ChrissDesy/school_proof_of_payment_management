@@ -83,12 +83,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Create New User</h3>
+                            <h3 class="card-title">Edit User Details</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                         <?php
-                            if($_SESSION['errorMessage'] != ""){
+                            if($_SESSION['errorMessage'] ?? "" != ""){
                         ?>
                             <div class="alert alert-danger">
                                 <?php echo $_SESSION['errorMessage']; $_SESSION['errorMessage'] = null; ?>

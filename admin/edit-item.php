@@ -1,5 +1,12 @@
 <?php
 
+    if(!isset($_REQUEST['id'])){
+        exit("Error: No reference found");
+    }
+    else{
+        $ref = $_REQUEST['id'];
+    }
+
     session_start();
     include('./includes/dbcon.php');
 
@@ -9,10 +16,17 @@
 
     include('./controllers/itemsCon.php');
 
-    $sql = "SELECT * FROM types WHERE status = 'active'";
+    $sql = "SELECT * FROM assets WHERE id='".$ref."'";
     $statement = $db->prepare($sql);
     $statement->execute();
     $result = $statement->fetchAll();
+
+    if(sizeof($result) > 0){
+        $r = $result[0];
+    }
+    else{
+        $_SESSION['errorMessage'] = 'Item Not Found';
+    }
 
 ?>
 
@@ -30,7 +44,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Favicon -->
 <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Assets | Home</title>
+  <title>Assets | Edit Asset</title>
 
   <?php include('./includes/styles.php'); ?>
   
@@ -47,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">Assets</h1>
@@ -55,7 +69,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Assets</a></li>
-                            <li class="breadcrumb-item active">New Asset</li>
+                            <li class="breadcrumb-item active">Edit Asset</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -65,77 +79,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
+                <div class="container">
                     
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Create New Asset</h3>
+                            <h3 class="card-title">Edit Item Details</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                        <?php
+                            if($_SESSION['errorMessage'] ?? "" != ""){
+                        ?>
+                            <div class="alert alert-danger">
+                                <?php echo $_SESSION['errorMessage']; $_SESSION['errorMessage'] = null; ?>
+                            </div>
+                            <br>
+                        <?php } ?>
                             <form method="post">
                                 <fieldset>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                Asset Type
-                                                <select name="typ" required class="form-control">
-                                                    <option value="" selected disabled>choose...</option>
-                                                    <?php foreach ($result as $r) {
-                                                        ?>
-                                                        <option value="<?php echo $r['id']; ?>"><?php echo $r['name']; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        <input type="text" name="ref" value="<?php echo $r['id']; ?>" hidden>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Asset Number
-                                                <input type="text" placeholder="Asset Number" name="anum" required class="form-control">
+                                                <input type="text" value="<?php echo $r['asset_number']; ?>" placeholder="Asset Number" name="anum" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Serial Number
-                                                <input type="text" placeholder="Serial Number" name="snum" required class="form-control">
+                                                <input type="text" value="<?php echo $r['serial_number']; ?>" placeholder="Serial Number" name="snum" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Date Acquired
-                                                <input type="date" name="date" required class="form-control">
+                                                <input type="date" value="<?php echo $r['date_acquired']; ?>" name="date" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Warranty Expires
-                                                <input type="date" name="expiry" required class="form-control">
+                                                <input type="date" value="<?php echo $r['expiry']; ?>" name="expiry" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Make
-                                                <input type="text" placeholder="Asset Make" name="make" required class="form-control">
+                                                <input type="text" value="<?php echo $r['make']; ?>" placeholder="Asset Make" name="make" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Model
-                                                <input type="text" placeholder="Serial Model" name="model" required class="form-control">
+                                                <input type="text" value="<?php echo $r['model']; ?>" placeholder="Serial Model" name="model" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 Asset Description
-                                                <textarea name="desc" cols="30" rows="5" required placeholder="Type something here..." class="form-control"></textarea>
+                                                <textarea name="desc" value="<?php echo $r['description']; ?>" cols="30" rows="5" required placeholder="Type something here..." class="form-control">
+                                                    <?php echo $r['description']; ?>
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <br><br>
                                     <div class="text-center">
-                                        <button type="reset" class="btn btn-sm btn-danger">Reset</button>
-                                        <button type="submit" name="addItem" class="btn btn-sm btn-primary">
-                                            Save
+                                        <button type="submit" name="editItem" class="btn btn-sm btn-primary">
+                                            Update
                                         </button>
                                     </div>
                                 </fieldset>

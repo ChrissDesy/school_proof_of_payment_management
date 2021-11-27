@@ -1,3 +1,11 @@
+<?php
+
+    $showDrop = '';
+
+    $url = $_SERVER['PHP_SELF'];
+
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
@@ -24,7 +32,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link">
+                    <a href="index.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/index.php') echo 'active'; ?>">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -41,13 +49,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="new-item.php" class="nav-link">
+                            <a href="new-item.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/new-item.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>New Item</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="items-list.php" class="nav-link">
+                            <a href="items-list.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/items-list.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Items</p>
                             </a>
@@ -87,13 +95,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="new-user.php" class="nav-link">
+                            <a href="new-user.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/new-user.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>New User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="users-list.php" class="nav-link">
+                            <a href="users-list.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/users-list.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>All Users</p>
                             </a>
@@ -110,7 +118,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./asset-types.php" class="nav-link">
+                            <a href="./asset-types.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/asset-types.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Asset Types</p>
                             </a>

@@ -39,7 +39,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
         <?php
-            if($_SESSION['errorMessage'] != ""){
+            if($_SESSION['errorMessage'] ?? "" != ""){
         ?>
           <div class="text-danger text-center">
               <?php echo $_SESSION['errorMessage']; $_SESSION['errorMessage'] = null; ?>
