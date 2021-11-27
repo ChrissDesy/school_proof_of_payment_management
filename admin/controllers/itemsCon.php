@@ -67,4 +67,37 @@
 		// echo $id;
 	}
 
+	//handle asset assigning
+	if(isset($_POST["assItem"])) {
+		$asset = $_POST["asset"];
+	    $date = date("Y-m-d");;
+	    $location = $_POST["loc"];
+	    $holder = $_POST["hold"];
+		$office = $_POST["office"];
+
+	    $sql = 'INSERT INTO holders (date_assigned, status, location, holder, office, asset) VALUES ("'.$date.'","active","'.$location.'","'.$holder.'","'.$office.'","'.$asset.'")';
+	    
+	    $query = $db->prepare($sql);   
+	    $query->execute();
+
+	    echo "<script type='text/javascript'> document.location ='./info-item.php?id=".$asset."'; </script>";
+	}
+
+	//handle asset assigning
+	if(isset($_POST["unassItem"])) {
+		$asset = $_POST["id"];
+	    $date = date("Y-m-d");
+
+	    $sql = '
+			UPDATE holders SET 
+			status = "disabled", date_unassigned = "'.$date.'"
+			WHERE asset = "'.$asset.'" AND status = "active"
+		';
+	    
+	    $query = $db->prepare($sql);   
+	    $query->execute();
+
+	    echo "<script type='text/javascript'> document.location ='./info-item.php?id=".$asset."'; </script>";
+	}
+
  ?>

@@ -83,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Item Details</h3>
+                            <h3 class="card-title">Edit Asset Details</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
