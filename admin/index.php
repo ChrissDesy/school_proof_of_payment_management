@@ -7,6 +7,8 @@
         echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
     }
 
+    include('./controllers/homeCon.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="info-box-content">
                                 <span class="info-box-text">Asset Types</span>
                                 <span class="info-box-number">
-                                    10
+                                    <?php echo $stats[0]['types']; ?>
                                 </span>
                             </div>
                             <!-- /.info-box-content -->
@@ -78,11 +80,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-thumbs-down"></i></span>
+                            <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-link"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Disposed</span>
-                                <span class="info-box-number">41</span>
+                                <span class="info-box-text">Allocated</span>
+                                <span class="info-box-number"><?php echo $stats[0]['assigned']; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -99,7 +101,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Assets</span>
-                                <span class="info-box-number">760</span>
+                                <span class="info-box-number"><?php echo $stats[0]['assets']; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -112,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Users</span>
-                                <span class="info-box-number">2</span>
+                                <span class="info-box-number"><?php echo $stats[0]['users']; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -146,15 +148,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <table class="table m-0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
                                                 <th>Type</th>
-                                                <th>Date</th>
+                                                <th>Make</th>
+                                                <th>Model</th>
+                                                <th>Date&nbsp;Acquired</th>
                                                 <th>Serial Number</th>
                                                 <th>Asset Number</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+                                            <?php foreach ($assets as $a) { ?>
+                                                <tr>
+                                                    <td><?php echo $a['name'] ?></td>
+                                                    <td><?php echo $a['make'] ?></td>
+                                                    <td><?php echo $a['model'] ?></td>
+                                                    <td><?php echo $a['date_acquired'] ?></td>
+                                                    <td><?php echo $a['serial_number'] ?></td>
+                                                    <td><?php echo $a['asset_number'] ?></td>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -162,8 +174,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Add New</a>
-                                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All</a>
+                                <a href="./new-item.php" class="btn btn-sm btn-outline-info float-left">
+                                    <i class="fas fa-plus mr-2"></i> Add New
+                                </a>
+                                <a href="./items-list.php" class="btn btn-sm btn-outline-secondary float-right">
+                                    <i class="fas fa-list-ul mr-2"></i> View All
+                                </a>
                             </div>
                             <!-- /.card-footer -->
                             </div>
