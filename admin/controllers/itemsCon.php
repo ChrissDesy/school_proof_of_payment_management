@@ -100,4 +100,20 @@
 	    echo "<script type='text/javascript'> document.location ='./info-item.php?id=".$asset."'; </script>";
 	}
 
+	//handle asset maintanance
+	if(isset($_POST["maintain"])) {
+		$asset = $_POST["asset"];
+	    $date = date("Y-m-d");;
+	    $status = $_POST["stat"];
+	    $done = $_POST["done"];
+		$description = $_POST["desc"];
+
+	    $sql = 'INSERT INTO maintanance (asset, status, date, done_by, description) VALUES ("'.$asset.'","'.$status.'","'.$date.'","'.$done.'","'.$description.'")';
+	    
+	    $query = $db->prepare($sql);   
+	    $query->execute();
+
+	    echo "<script type='text/javascript'> document.location ='./info-item.php?id=".$asset."'; </script>";
+	}
+
  ?>

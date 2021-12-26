@@ -33,6 +33,13 @@
     $statement2->execute();
     $holders = $statement2->fetchAll();
 
+    $sql3 = "
+        SELECT * FROM maintanance WHERE asset = ".$ref."
+    ";
+    $statement3 = $db->prepare($sql3);
+    $statement3->execute();
+    $maintanances = $statement3->fetchAll();
+
     if(sizeof($result) > 0){
         $r = $result[0];
     }
@@ -219,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <h4 class="card-title">Asset Planned Maintanances</h4>
                                         </div>
                                         <div class="col-4 text-right">
-                                            <button class="btn btn-sm btn-outline-primary">
+                                            <button data-toggle="modal" data-target="#maintain" class="btn btn-sm btn-outline-primary">
                                                 <i class="fa fa-plus"></i>&nbsp;&nbsp;Add
                                             </button>
                                         </div>
@@ -237,7 +244,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                                <?php  foreach ($maintanances as $m) {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $m['date']; ?></td>
+                                                        <td><?php echo $m['done_by']; ?></td>
+                                                        <td><?php echo $m['status']; ?></td>
+                                                        <td>
+                                                            <span class="text-primary" title="View Description" data-target="#info" data-toggle="modal" data-myid="<?php echo $m['id']; ?>">
+                                                                <i class="fa fa-eye"></i>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -327,6 +346,77 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.modal-dialog -->
         </div>
 
+        <div class="modal fade" id="maintain">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Asset Maintanance</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            <div class="row">
+                                <input type="text" name="asset" value="<?php echo $ref; ?>" hidden>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        Done By
+                                        <input type="text" name="done" placeholder="Done By" required class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        Status
+                                        <select name="stat" required class="form-control">
+                                            <option value="" selected disabled>choose...</option>
+                                            <option value="Healthy">Healthy</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Issues">Issues</option>
+                                            <option value="Dispose">Dispose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    Description 
+                                    <textarea name="desc" class="form-control" required cols="30" rows="7" placeholder="Type something here..."></textarea>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="text-center">
+                                <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <button class="btn btn-sm btn-primary" type="submit" name="maintain" class="form-control">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
+        <div class="modal fade" id="info">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Asset Maintanance Description</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            <div align="center">
+                                <p id="descInfo"></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+
     </div>
     <!-- ./wrapper -->
     
@@ -335,7 +425,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <?php include('./includes/javascripts.php'); ?>
 
     <script>
-        
+        let data;
+
+        $(function () {
+            data = <?php echo json_encode($maintanances); ?>;
+        });
+
+        $("#info").on('show.bs.modal', function (e) {
+            
+            var Id = $(e.relatedTarget).data('myid');
+
+            data.forEach(r => {
+                if(r.id == Id){
+                    $('#descInfo').html(r.description);
+                }
+            });
+        });
     </script>
     
 </body>
