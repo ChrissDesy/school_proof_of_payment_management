@@ -25,7 +25,8 @@
         $showDrop = 'reports';
     }
     else if(
-        $url == '/my-assets/admin/asset-types.php'
+        $url == '/my-assets/admin/asset-types.php' ||
+        $url == '/my-assets/admin/change-password.php'
     ){
         $showDrop = 'settings';
     }
@@ -153,7 +154,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./change-password.php" class="nav-link">
+                            <a href="./change-password.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/change-password.php') echo 'active'; ?>"">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Change Password</p>
                             </a>
