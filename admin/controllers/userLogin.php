@@ -18,6 +18,7 @@
                 
                 if($r['status'] == 'active'){
                     $_SESSION['username'] = $r['firstname']. ' '. $r['lastname'];
+                    $_SESSION['uname'] = $r['username'];
                 
                     header("location:./admin/index.php");
                 }
