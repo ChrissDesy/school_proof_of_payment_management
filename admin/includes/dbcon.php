@@ -12,6 +12,11 @@
     }
     catch (PDOException $e)
     {
-        exit("Error: " . $e->getMessage());
+        // exit("Error: " . $e->getMessage());
+        // session_start();
+
+        $_SESSION['error'] = "Error: " . $e->getMessage();
+
+        echo "<script type='text/javascript'> document.location ='./error.php'; </script>";
     }
 ?>
