@@ -20,7 +20,9 @@
         $showDrop = 'users';
     }
     else if(
-        $url == '/my-assets/admin/report1.php'
+        $url == '/my-assets/admin/report1.php' ||
+        $url == '/my-assets/admin/report2.php' ||
+        $url == '/my-assets/admin/report3.php' 
     ){
         $showDrop = 'reports';
     }
@@ -108,9 +110,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="report2.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/report2.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Report 2</p>
+                                <p>Allocated</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="report3.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/report3.php') echo 'active'; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Maintanance</p>
                             </a>
                         </li>
                     </ul>
