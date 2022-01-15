@@ -20,7 +20,7 @@
         $showDrop = 'users';
     }
     else if(
-        $url == '/my-assets/admin/report.php'
+        $url == '/my-assets/admin/report1.php'
     ){
         $showDrop = 'reports';
     }
@@ -102,9 +102,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="report1.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/my-assets/admin/report1.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Report 1</p>
+                                <p>Asset Types</p>
                             </a>
                         </li>
                         <li class="nav-item">
