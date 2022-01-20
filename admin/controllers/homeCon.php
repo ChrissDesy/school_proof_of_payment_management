@@ -6,7 +6,7 @@
             date_acquired, make, model, serial_number, asset_number, name
         FROM assets, types
         WHERE assets.status = 'active' and assets.type = types.id
-        ORDER BY date_added DESC
+        ORDER BY date_acquired DESC
         LIMIT 5;
     ";
 
