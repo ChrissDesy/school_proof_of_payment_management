@@ -77,7 +77,7 @@
       </form>
 
       <p class="mb-1 mt-4">
-        <!-- <a href="#">I forgot my password</a> -->
+        <a href="./forgot.php">I forgot my password</a>
       </p>
     </div>
     <!-- /.login-card-body -->

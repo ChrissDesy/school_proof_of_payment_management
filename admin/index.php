@@ -78,19 +78,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- /.info-box -->
                         </div>
                         <!-- /.col -->
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                            <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-link"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Allocated</span>
-                                <span class="info-box-number"><?php echo $stats[0]['assigned']; ?></span>
-                            </div>
-                            <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
 
                         <!-- fix for small devices only -->
                         <div class="clearfix hidden-md-up"></div>
@@ -108,6 +95,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- /.info-box -->
                         </div>
                         <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                            <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-link"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Allocated</span>
+                                <span class="info-box-number"><?php echo $stats[0]['assigned']; ?></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
                             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-users"></i></span>

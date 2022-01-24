@@ -37,4 +37,40 @@
         }
     }
 
+    if(isset($_POST['reset']))
+    {
+        $uname = $_POST['username'];
+    
+        if($uname)
+        {   
+
+            //get employees
+            $sql = "SELECT * FROM users WHERE username='".$uname."'";
+            $statement = $db->prepare($sql);
+            $statement->execute();
+            $result = $statement->fetchAll();
+
+            if(sizeof($result) > 0){
+                $r = $result[0];
+                
+                if($r['status'] == 'active'){
+                    $_SESSION['uname'] = $r['username'];
+                
+                    $mode = 'change';
+                }
+                else{
+                    $_SESSION['errorMessage'] = 'Account Disabled or Deleted';
+                }
+            }
+            else{
+                $_SESSION['errorMessage'] = 'User not found.';
+            }
+
+        }
+        else
+        {
+            $_SESSION['errorMessage'] = 'Enter Username.';
+        }
+    }
+
 ?>
