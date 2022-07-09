@@ -1,13 +1,18 @@
 <?php
 
     session_start();
-    include('./includes/dbcon.php');
+    // include('./includes/dbcon.php');
 
-    if(!isset($_SESSION['username'])){
-        echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
-    }
+    // if(!isset($_SESSION['username'])){
+    //     echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
+    // }
 
-    include('./controllers/usersCon.php');
+    // include('./controllers/itemsCon.php');
+
+    // $sql = "SELECT * FROM types WHERE status = 'active'";
+    // $statement = $db->prepare($sql);
+    // $statement->execute();
+    // $result = $statement->fetchAll();
 
 ?>
 
@@ -25,7 +30,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Favicon -->
 <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Payments | New User</title>
+  <title>Payments | Students</title>
 
   <?php include('./includes/styles.php'); ?>
   
@@ -42,15 +47,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Users</h1>
+                            <h1 class="m-0 text-dark">Students</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Users</a></li>
-                            <li class="breadcrumb-item active">New User</li>
+                            <li class="breadcrumb-item"><a href="#">Students</a></li>
+                            <li class="breadcrumb-item active">New Student</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -60,16 +65,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Main content -->
             <section class="content">
-                <div class="container">
+                <div class="container-fluid">
                     
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Create New User</h3>
+                            <h3 class="card-title">Create New Student</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form method="post">
-                                <fieldset>
+                            <fieldset>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -85,14 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                Employee Id
-                                                <input type="text" name="natid" required placeholder="Employee Id" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                Email
-                                                <input type="email" name="email" required placeholder="Email" class="form-control">
+                                                Registration Number
+                                                <input type="text" name="natid" required placeholder="Registration Id" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -119,24 +118,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                Username
-                                                <input type="text" name="uname" required placeholder="Username" class="form-control">
+                                                Parent Name
+                                                <input type="text" name="uname" required placeholder="Name" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                User Role
-                                                <select name="role" required class="form-control">
-                                                    <option value="" selected disabled>choose...</option>
-                                                    <option value="Admin">Admin</option>
-                                                    <option value="Clerk">Clerk</option>
-                                                </select>
+                                                Parent Mobile
+                                                <input type="text" name="uname" required placeholder="Mobile" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                Password
-                                                <input type="password" name="pwd" id="pass1" required placeholder="Password" class="form-control">
+                                                Parent Email
+                                                <input type="text" name="uname" required placeholder="Email" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                Student Address
+                                                <textarea name="address" id="" cols="30" rows="7" class="form-control" placeholder="type something"></textarea>
                                             </div>
                                         </div>
                                     </div>

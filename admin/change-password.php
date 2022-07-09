@@ -19,7 +19,7 @@
 <!-- Favicon -->
 <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Assets | New User</title>
+  <title>Payments | New User</title>
 
   <?php include('./includes/styles.php'); ?>
   

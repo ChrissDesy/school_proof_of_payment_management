@@ -1,13 +1,13 @@
 <?php
 
     session_start();
-    include('./includes/dbcon.php');
+    //include('./includes/dbcon.php');
 
     if(!isset($_SESSION['username'])){
         echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
     }
 
-    include('./controllers/homeCon.php');
+    // include('./controllers/homeCon.php');
 
 ?>
 
@@ -25,7 +25,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Favicon -->
   <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Assets | Home</title>
+  <title>Payments | Home</title>
 
   <?php include('./includes/styles.php'); ?>
   
@@ -65,12 +65,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box">
-                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+                            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-inbox"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Asset Types</span>
+                                <span class="info-box-text">New Payments</span>
                                 <span class="info-box-number">
-                                    <?php echo $stats[0]['types']; ?>
+                                    <?php echo 10; ?>
                                 </span>
                             </div>
                             <!-- /.info-box-content -->
@@ -84,11 +84,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-list-ul"></i></span>
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-check"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Assets</span>
-                                <span class="info-box-number"><?php echo $stats[0]['assets']; ?></span>
+                                <span class="info-box-text">Verified</span>
+                                <span class="info-box-number"><?php echo 7; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -97,11 +97,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- /.col -->
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-link"></i></span>
+                            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar-times"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Allocated</span>
-                                <span class="info-box-number"><?php echo $stats[0]['assigned']; ?></span>
+                                <span class="info-box-text">Denied</span>
+                                <span class="info-box-number"><?php echo 9; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -111,11 +111,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-users"></i></span>
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user-graduate"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Users</span>
-                                <span class="info-box-number"><?php echo $stats[0]['users']; ?></span>
+                                <span class="info-box-text">Students</span>
+                                <span class="info-box-number"><?php echo 20; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -132,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- TABLE: LATEST ORDERS -->
                             <div class="card">
                             <div class="card-header border-transparent">
-                                <h3 class="card-title">Latest Assets</h3>
+                                <h3 class="card-title">Latest Payments</h3>
 
                                 <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-widget="collapse">
@@ -149,25 +149,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <table class="table m-0">
                                         <thead>
                                             <tr>
-                                                <th>Type</th>
-                                                <th>Make</th>
-                                                <th>Model</th>
-                                                <th>Date&nbsp;Acquired</th>
-                                                <th>Serial Number</th>
-                                                <th>Asset Number</th>
+                                                <th>Student</th>
+                                                <th>Registration</th>
+                                                <th>Amount</th>
+                                                <th>Date&nbsp;Paid</th>
+                                                <th>Term - Year</th>
+                                                <th>Method</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($assets as $a) { ?>
-                                                <tr>
-                                                    <td><?php echo $a['name'] ?></td>
-                                                    <td><?php echo $a['make'] ?></td>
-                                                    <td><?php echo $a['model'] ?></td>
-                                                    <td><?php echo $a['date_acquired'] ?></td>
-                                                    <td><?php echo $a['serial_number'] ?></td>
-                                                    <td><?php echo $a['asset_number'] ?></td>
-                                                </tr>
-                                            <?php } ?>
+                                            <tr>
+                                                <td><?php echo 'Chriss Desy' ?></td>
+                                                <td><?php echo 'A1234' ?></td>
+                                                <td><?php echo 'USD$100' ?></td>
+                                                <td><?php echo '2022-07-09' ?></td>
+                                                <td><?php echo '2 - 2022' ?></td>
+                                                <td><?php echo 'ECOCASH' ?></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -175,10 +173,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <a href="./new-item.php" class="btn btn-sm btn-outline-info float-left">
-                                    <i class="fas fa-plus mr-2"></i> Add New
-                                </a>
-                                <a href="./items-list.php" class="btn btn-sm btn-outline-secondary float-right">
+                                <!-- <a href="./new-item.php" class="btn btn-sm btn-outline-info float-left">
+                                    <i class="fas fa-plus mr-2"></i> View New
+                                </a> -->
+                                <a href="./new-item.php" class="btn btn-sm btn-outline-secondary float-right">
                                     <i class="fas fa-list-ul mr-2"></i> View All
                                 </a>
                             </div>

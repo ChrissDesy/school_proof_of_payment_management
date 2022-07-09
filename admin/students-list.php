@@ -1,18 +1,18 @@
 <?php
 
     session_start();
-    include('./includes/dbcon.php');
-    include('./controllers/itemsCon.php');
+    // include('./includes/dbcon.php');
+    // include('./controllers/itemsCon.php');
 
-    if(!isset($_SESSION['username'])){
-        echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
-    }
+    // if(!isset($_SESSION['username'])){
+    //     echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
+    // }
 
-    //get
-    $sql = "SELECT * FROM assets";
-    $statement = $db->prepare($sql);
-    $statement->execute();
-    $result = $statement->fetchAll();
+    // //get
+    // $sql = "SELECT * FROM assets";
+    // $statement = $db->prepare($sql);
+    // $statement->execute();
+    // $result = $statement->fetchAll();
 
     // echo $result;
 ?>
@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Favicon -->
     <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Assets | Home</title>
+  <title>Payments | Students</title>
 
   <?php include('./includes/styles.php'); ?>
   
@@ -51,12 +51,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Assets</h1>
+                            <h1 class="m-0 text-dark">Students</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Assets</a></li>
-                            <li class="breadcrumb-item active">All Assets</li>
+                            <li class="breadcrumb-item"><a href="#">Students</a></li>
+                            <li class="breadcrumb-item active">All Students</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -71,9 +71,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-6"><h3 class="card-title">All Registered Assets</h3></div>
+                                <div class="col-md-6"><h3 class="card-title">All Registered Students</h3></div>
                                 <div class="col-md-6 text-right">
-                                    <a href="./new-item.php" class="btn btn-sm btn-outline-primary">
+                                    <a href="./new-student.php" class="btn btn-sm btn-outline-primary">
                                         <i class="fa fa-plus"></i>&nbsp;&nbsp;Add
                                     </a>
                                 </div>
@@ -85,47 +85,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Asset&nbsp;Number</th>
-                                            <th>Serial&nbsp;Number</th>
-                                            <th>Make</th>
-                                            <th>Model</th>
-                                            <th>Date&nbsp;Acquired</th>
-                                            <th>Expiry&nbsp;Date</th>
-                                            <th>Created&nbsp;By</th>
-                                            <th>Date&nbsp;Added</th>
+                                            <th>Reg&nbsp;Number</th>
+                                            <th>Fulllname</th>
+                                            <th>Gender</th>
+                                            <th>Birth&nbsp;Date</th>
+                                            <th>Mobile</th>
+                                            <th>Parent&nbsp;Name</th>
+                                            <th>Parent&nbsp;Mobile</th>
+                                            <th>Parent&nbsp;Email</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($result as $r) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $r['asset_number']; ?></td>
-                                                <td><?php echo $r['serial_number']; ?></td>
-                                                <td><?php echo $r['make']; ?></td>
-                                                <td><?php echo $r['model']; ?></td>
-                                                <td><?php echo $r['date_acquired']; ?></td>
-                                                <td><?php echo $r['expiry']; ?></td>
-                                                <td><?php echo $r['created_by']; ?></td>
-                                                <td><?php echo $r['date_added']; ?></td>
-                                                <td><?php echo $r['status']; ?></td>
-                                                <td>
-                                                    <span class="text-info" title="View Description" data-target="#info" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-list-alt"></i>
-                                                    </span>&nbsp;
-                                                    <a class="text-primary" title="View Asset Info" href="./info-item.php?id=<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>&nbsp;
-                                                    <a class="text-warning" title="Edit Asset" href="./edit-item.php?id=<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>&nbsp;
-                                                    <span class="text-danger" title="Delete Asset" data-target="#docs" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-trash"></i>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+                                        <tr>
+                                            <td>A1234</td>
+                                            <td>Chriss Desy</td>
+                                            <td>Male</td>
+                                            <td>10 March 2010</td>
+                                            <td>0770000000</td>
+                                            <td>Ngoni Mutasa</td>
+                                            <td>0780000000</td>
+                                            <td>chris@test.com</td>
+                                            <td>
+                                                <span class="badge badge-success">active</span>
+                                            </td>
+                                            <td>
+                                                <span class="pointer text-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>A1234</td>
+                                            <td>Chriss Desy</td>
+                                            <td>Male</td>
+                                            <td>10 March 2010</td>
+                                            <td>0770000000</td>
+                                            <td>Ngoni Mutasa</td>
+                                            <td>0780000000</td>
+                                            <td>chris@test.com</td>
+                                            <td>
+                                                <span class="badge badge-success">active</span>
+                                            </td>
+                                            <td>
+                                                <span class="pointer text-primary">
+                                                    <i class="fa fa-edit"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -204,7 +212,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         $(function () {
             $("#example1").DataTable();
 
-            data = <?php echo json_encode($result); ?>;
+            data = <?php echo ''; ?>;
         });
 
         $("#docs").on('show.bs.modal', function (e) {
