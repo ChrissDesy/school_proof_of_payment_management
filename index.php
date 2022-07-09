@@ -1,11 +1,11 @@
 <?php 
 
   session_start();
-  include('./admin/includes/dbcon.php');
+  // include('./admin/includes/dbcon.php');
 
-  if($_SESSION['username'] ?? '' != ''){
-    echo "<script type='text/javascript'> document.location ='./admin/index.php'; </script>";
-  }
+  // if($_SESSION['username'] ?? '' != ''){
+  //   echo "<script type='text/javascript'> document.location ='./admin/index.php'; </script>";
+  // }
 
   include('./admin/controllers/userLogin.php');
 
@@ -16,7 +16,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Assets | Log in</title>
+  <title>Payments | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,7 +32,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>HCCL</b>ASSETS</a>
+    <a href="#"><b>PAYMENTS</b>PRO</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
