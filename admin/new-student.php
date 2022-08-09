@@ -69,8 +69,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form method="post">
-                            <fieldset>
+                                <fieldset>
                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                Entry Year
+                                                <select name="year" required class="form-control">
+                                                    <option value="" disabled>choose...</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022" selected>2022</option>
+                                                    <option value="2023">2023</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                Entry Term
+                                                <select name="term" required class="form-control">
+                                                    <option value="" selected disabled>choose...</option>
+                                                    <option value="1">Term 1</option>
+                                                    <option value="2">Term 2</option>
+                                                    <option value="3">Term 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Firstname

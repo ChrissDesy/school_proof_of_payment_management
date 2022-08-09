@@ -12,9 +12,11 @@
 		$pname = $_POST["pname"];
 		$pmobile = $_POST['pmob'];
 		$pemail = $_POST['pemail'];
+		$year = $_POST['year'];
+		$term = $_POST['term'];
 
-	    $sql = 'INSERT INTO students (fname, lname, reg_number, phone, gender, dob, address, pname, pmobile, pemail) 
-			VALUES ("'.$name.'","'.$sname.'","'.$reg.'","'.$phone.'","'.$gender.'","'.$dob.'","'.$address.'","'.$pname.'","'.$pmobile.'", "'.$pemail.'")';
+	    $sql = 'INSERT INTO students (fname, lname, reg_number, phone, gender, dob, address, pname, pmobile, pemail, year, period) 
+			VALUES ("'.$name.'","'.$sname.'","'.$reg.'","'.$phone.'","'.$gender.'","'.$dob.'","'.$address.'","'.$pname.'","'.$pmobile.'", "'.$pemail.'","'.$year.'", "'.$term.'")';
 	    
 	    $query = $db->prepare($sql);   
 	    $query->execute();
@@ -34,6 +36,8 @@
 		$pname = $_POST["pname"];
 		$pmobile = $_POST['pmob'];
 		$pemail = $_POST['pemail'];
+		$year = $_POST['year'];
+		$term = $_POST['term'];
 
 	    $sql = '
             UPDATE students SET
@@ -44,6 +48,8 @@
                 dob = "'.$dob.'",
                 address = "'.$address.'",
                 pname = "'.$pname.'",
+                year = "'.$year.'",
+                term = "'.$term.'",
                 pmobile = "'.$pmobile.'",
                 pemail = "'.$pemail.'"
             WHERE id = "'.$ref.'"

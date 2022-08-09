@@ -89,6 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <th>Reference</th>
                                             <th>Name</th>
                                             <th>Registration</th>
+                                            <th>Entry Year</th>
                                             <th>Phone</th>
                                             <th>Gender</th>
                                             <th>DOB</th>
@@ -106,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <td><?php echo $r['id']; ?></td>
                                                 <td><?php echo $r['fname']. ' '. $r['lname']; ?></td>
                                                 <td><?php echo $r['reg_number']; ?></td>
+                                                <td><?php echo $r['year'] . '/ Term-' . $r['period']; ?></td>
                                                 <td><?php echo $r['phone']; ?></td>
                                                 <td><?php echo $r['gender']; ?></td>
                                                 <td><?php echo $r['dob']; ?></td>
@@ -156,6 +158,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="row">
                             <div hidden>
                                 <input type="text" id="eId" name="ref">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    Entry Year
+                                    <select name="year" id="eyear" required class="form-control">
+                                        <option value="" disabled>choose...</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022" selected>2022</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    Entry Term
+                                    <select name="term" id="eterm" required class="form-control">
+                                        <option value="" selected disabled>choose...</option>
+                                        <option value="1">Term 1</option>
+                                        <option value="2">Term 2</option>
+                                        <option value="3">Term 3</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -293,6 +317,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $('#epmob').val(info.pmobile);
             $('#eaddress').val(info.address);
             $('#epemail').val(info.pemail);
+            $('#eyear').val(info.year);
+            $('#eterm').val(info.period);
 
         });
 

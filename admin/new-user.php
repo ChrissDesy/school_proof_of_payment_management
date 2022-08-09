@@ -70,7 +70,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="card-body">
                             <form method="post">
                                 <fieldset>
-                                    <div class="row">
+                                    <div class="row">                                        
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Firstname
