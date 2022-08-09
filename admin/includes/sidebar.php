@@ -5,7 +5,7 @@
     $url = $_SERVER['PHP_SELF'];
 
     if(
-        $url == '/pop-mgnt/admin/new-item.php'
+        $url == '/pop-mgnt/admin/new-payment.php'
     ){
         $showDrop = 'payments';
     }
@@ -76,6 +76,23 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview <?php if($showDrop == 'payments') echo 'menu-open'; ?>">
+                    <a href="#" class="nav-link <?php if($showDrop == 'payments') echo 'active'; ?>">
+                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <p>
+                            Payments
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="new-payment.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/new-payment.php') echo 'active'; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Payment</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item has-treeview <?php if($showDrop == 'students') echo 'menu-open'; ?>">
                     <a href="#" class="nav-link <?php if($showDrop == 'students') echo 'active'; ?>">
                         <i class="nav-icon fas fa-user-graduate"></i>
@@ -108,24 +125,24 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="report1.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report1.php') echo 'active'; ?>">
+                        <!-- <li class="nav-item">
+                            <a href="report1.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report1.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Funds Balances</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="report2.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report2.php') echo 'active'; ?>">
+                            <a href="report2.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report2.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Verified</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="report3.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report3.php') echo 'active'; ?>">
+                            <a href="report3.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report3.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Denied</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="report4.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report4.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
