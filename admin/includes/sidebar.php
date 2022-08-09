@@ -32,7 +32,8 @@
         $showDrop = 'reports';
     }
     else if(
-        $url == '/pop-mgnt/admin/change-password.php'
+        $url == '/pop-mgnt/admin/change-password.php' ||
+        $url == '/pop-mgnt/admin/fees.php'
     ){
         $showDrop = 'settings';
     }
@@ -164,6 +165,14 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./fees.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/fees.php') echo 'active'; ?>"">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Fees Structure</p>
+                            </a>
+                        </li>
+                    </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="./change-password.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/change-password.php') echo 'active'; ?>"">
