@@ -128,7 +128,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 User Role
                                                 <select name="role" required class="form-control">
                                                     <option value="" selected disabled>choose...</option>
-                                                    <option value="Admin">Admin</option>
+                                                    <option value="Head">Headmaster</option>
+                                                    <option value="Bursar">Bursar</option>
                                                     <option value="Clerk">Clerk</option>
                                                 </select>
                                             </div>
