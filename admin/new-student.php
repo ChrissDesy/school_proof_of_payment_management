@@ -1,18 +1,13 @@
 <?php
 
     session_start();
-    // include('./includes/dbcon.php');
+    include('./includes/dbcon.php');
 
-    // if(!isset($_SESSION['username'])){
-    //     echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
-    // }
+    if(!isset($_SESSION['username'])){
+        echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
+    }
 
-    // include('./controllers/itemsCon.php');
-
-    // $sql = "SELECT * FROM types WHERE status = 'active'";
-    // $statement = $db->prepare($sql);
-    // $statement->execute();
-    // $result = $statement->fetchAll();
+    include('./controllers/studentsCon.php');
 
 ?>
 
@@ -79,19 +74,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Firstname
-                                                <input type="text" name="fname" required placeholder="Firstname" class="form-control">
+                                                <input type="text" name="name" required placeholder="Firstname" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Lastname
-                                                <input type="text" name="lname" required placeholder="Lastname" class="form-control">
+                                                <input type="text" name="sname" required placeholder="Lastname" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Registration Number
-                                                <input type="text" name="natid" required placeholder="Registration Id" class="form-control">
+                                                <input type="text" name="reg" required placeholder="Registration Id" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -103,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Date of Birth
-                                                <input type="date" name="dat" required class="form-control">
+                                                <input type="date" name="dob" required class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -119,19 +114,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Parent Name
-                                                <input type="text" name="uname" required placeholder="Name" class="form-control">
+                                                <input type="text" name="pname" required placeholder="Name" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Parent Mobile
-                                                <input type="text" name="uname" required placeholder="Mobile" class="form-control">
+                                                <input type="text" name="pmob" required placeholder="Mobile" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 Parent Email
-                                                <input type="text" name="uname" required placeholder="Email" class="form-control">
+                                                <input type="email" name="pemail" required placeholder="Email" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -144,7 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <br><br>
                                     <div class="text-center">
                                         <button type="reset" class="btn btn-sm btn-danger">Reset</button>
-                                        <button type="submit" name="addRec" class="btn btn-sm btn-primary">
+                                        <button type="submit" name="addStudent" class="btn btn-sm btn-primary">
                                             Save
                                         </button>
                                     </div>
