@@ -125,28 +125,28 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <!-- <li class="nav-item">
-                            <a href="report1.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report1.php') echo 'active'; ?>">
+                        <li class="nav-item">
+                            <a href="report1.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report1.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Funds Balances</p>
+                                <p>Paid</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="report2.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report2.php') echo 'active'; ?>">
+                            <a href="report2.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report2.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Verified</p>
+                                <p>Not Paid</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="report3.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report3.php') echo 'active'; ?>">
+                            <a href="report3.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report3.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Denied</p>
+                                <p>Owing</p>
                             </a>
-                        </li> -->
+                        </li>
                         <li class="nav-item">
                             <a href="report4.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report4.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Student Report</p>
+                                <p>Student Balances</p>
                             </a>
                         </li>
                     </ul>
