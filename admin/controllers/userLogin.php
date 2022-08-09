@@ -8,32 +8,28 @@
         {   
 
             //get employees
-            // $sql = "SELECT * FROM users WHERE username='".$uname."' AND password='".$pass."'";
-            // $statement = $db->prepare($sql);
-            // $statement->execute();
-            // $result = $statement->fetchAll();
+            $sql = "SELECT * FROM users WHERE username='".$uname."' AND password='".$pass."'";
+            $statement = $db->prepare($sql);
+            $statement->execute();
+            $result = $statement->fetchAll();
 
-            // if(sizeof($result) > 0){
-            //     $r = $result[0];
+            if(sizeof($result) > 0){
+                $r = $result[0];
                 
-            //     if($r['status'] == 'active'){
-            //         $_SESSION['username'] = $r['firstname']. ' '. $r['lastname'];
-            //         $_SESSION['uname'] = $r['username'];
+                if($r['status'] == 'active'){
+                    $_SESSION['username'] = $r['firstname']. ' '. $r['lastname'];
+                    $_SESSION['uname'] = $r['username'];
+                    $_SESSION['utype'] = $r['role'];
                 
-            //         header("location:./admin/index.php");
-            //     }
-            //     else{
-            //         $_SESSION['errorMessage'] = 'Account Disabled or Deleted';
-            //     }
-            // }
-            // else{
-            //     $_SESSION['errorMessage'] = 'Invalid Credentials';
-            // }
-
-            $_SESSION['username'] = $uname;
-            $_SESSION['uname'] = $uname;
-        
-            header("location:./admin/index.php");
+                    header("location:./admin/index.php");
+                }
+                else{
+                    $_SESSION['errorMessage'] = 'Account Disabled or Deleted';
+                }
+            }
+            else{
+                $_SESSION['errorMessage'] = 'Invalid Credentials';
+            }
 
         }
         else

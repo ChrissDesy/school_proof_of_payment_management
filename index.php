@@ -1,11 +1,11 @@
 <?php 
 
   session_start();
-  // include('./admin/includes/dbcon.php');
+  include('./admin/includes/dbcon.php');
 
-  // if($_SESSION['username'] ?? '' != ''){
-  //   echo "<script type='text/javascript'> document.location ='./admin/index.php'; </script>";
-  // }
+  if($_SESSION['username'] ?? '' != ''){
+    echo "<script type='text/javascript'> document.location ='./admin/index.php'; </script>";
+  }
 
   include('./admin/controllers/userLogin.php');
 
