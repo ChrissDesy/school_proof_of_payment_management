@@ -2,17 +2,31 @@
 
     session_start();
     include('./includes/dbcon.php');
-    include('./controllers/feesCon.php');
+    include('./controllers/paymentsCon.php');
 
     if(!isset($_SESSION['username'])){
         echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
     }
 
     //get employees
-    $sql = "SELECT * FROM fees";
+    $sql = "SELECT
+            t.id, t.date, t.amount, s.fname, s.lname, f.year, f.period
+            FROM transactions AS t
+            LEFT JOIN students AS s ON t.student = s.id
+            INNER JOIN fees AS f ON t.fee = f.id";
     $statement = $db->prepare($sql);
     $statement->execute();
     $result = $statement->fetchAll();
+
+    $sql1 = "SELECT * FROM students";
+    $statement1 = $db->prepare($sql1);
+    $statement1->execute();
+    $result1 = $statement1->fetchAll();
+
+    $sql2 = "SELECT * FROM fees";
+    $statement2 = $db->prepare($sql2);
+    $statement2->execute();
+    $result2 = $statement2->fetchAll();
 
     // echo $result;
 
@@ -32,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Favicon -->
 <link rel="shortcut icon" href="../dist/img/AdminLTELogo.png"/>
 
-  <title>Payments | Fees</title>
+  <title>Payments | Payments</title>
 
   <?php include('./includes/styles.php'); ?>
   
@@ -52,12 +66,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Settings</h1>
+                            <h1 class="m-0 text-dark">Payments</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Fees</a></li>
-                            <li class="breadcrumb-item active">All Fees</li>
+                            <li class="breadcrumb-item"><a href="#">Payments</a></li>
+                            <li class="breadcrumb-item active">All Payments</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -72,7 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-6"><h3 class="card-title">List of Fees</h3></div>
+                                <div class="col-md-6"><h3 class="card-title">List of New Payments</h3></div>
                                 <div class="col-md-6 text-right">
                                     <button data-target="#add" data-toggle="modal" class="btn btn-sm btn-outline-primary">
                                         <i class="fa fa-plus"></i>&nbsp;&nbsp;Add
@@ -87,12 +101,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <thead>
                                         <tr>
                                             <th>Reference</th>
-                                            <th>Year/Period</th>
-                                            <th>Levy</th>
-                                            <th>Tuition</th>
-                                            <th>Total</th>
-                                            <th>Minimum</th>
-                                            <th>Action</th>
+                                            <th>Date</th>
+                                            <th>Student</th>
+                                            <th>Amount</th>
+                                            <th>Period</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,19 +112,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             ?>
                                             <tr>
                                                 <td><?php echo $r['id']; ?></td>
-                                                <td><?php echo $r['year'] . '/ Term-' . $r['period']; ?></td>
-                                                <td><?php echo 'US$'.$r['levy']; ?></td>
-                                                <td><?php echo 'US$'.$r['tuition']; ?></td>
-                                                <td><?php echo 'US$'.$r['total']; ?></td>
-                                                <td><?php echo 'US$'.$r['minimum']; ?></td>
-                                                <td>
-                                                    <span class="text-warning mr-3" data-target="#edit" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-edit"></i>
-                                                    </span>
-                                                    <span class="text-danger" data-target="#delete" data-toggle="modal" data-myid="<?php echo $r['id']; ?>">
-                                                        <i class="fa fa-trash"></i>
-                                                    </span>
-                                                </td>
+                                                <td><?php echo $r['date']; ?></td>
+                                                <td><?php echo $r['fname']. ' '. $r['lname']; ?></td>
+                                                <td><?php echo 'US$'.$r['amount']; ?></td>
+                                                <td><?php echo $r['year']. ' / Term-'. $r['period']; ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -138,7 +141,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Add Record</h4>
+                    <h4 class="modal-title">Add New Payment</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -146,57 +149,64 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="modal-body">
                     <form method="post">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    Year
-                                    <select name="year" required class="form-control">
-                                        <option value="" disabled>choose...</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022" selected>2022</option>
-                                        <option value="2023">2023</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    Term
-                                    <select name="term" required class="form-control">
+                                    Student
+                                    <select name="student" required class="form-control" onchange="verifyStud()">
                                         <option value="" selected disabled>choose...</option>
-                                        <option value="1">Term 1</option>
-                                        <option value="2">Term 2</option>
-                                        <option value="3">Term 3</option>
+                                        <?php foreach ($result1 as $r) {
+                                            ?>
+                                            <tr>
+                                                <option value="<?php echo $r['id']; ?>"><?php echo $r['fname']. ' '. $r['lname']; ?></option>
+                                            </tr>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
+                                <div class="form-group">
+                                    Fees
+                                    <select name="fee" id="myPeriod" required class="form-control" onchange="loadDetails()">
+                                        <option value="" selected disabled>choose...</option>
+                                        <?php foreach ($result2 as $r) {
+                                            ?>
+                                            <tr>
+                                                <option value="<?php echo $r['id']; ?>"><?php echo $r['year']. ' / Term-'. $r['period']; ?></option>
+                                            </tr>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     Levy
-                                    <input type="text" name="levy" id="myLevy" required placeholder="Levy" class="form-control" onkeyup="calcTotal('myLevy', 'myTuition', 'myTot')">
+                                    <input type="text" id="myLevy" readonly placeholder="Levy" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     Tuition
-                                    <input type="text" name="tuition" id="myTuition" required placeholder="Tuition" class="form-control" onkeyup="calcTotal('myLevy', 'myTuition', 'myTot')">
+                                    <input type="text" id="myTuition" readonly placeholder="Tuition" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    Total
-                                    <input type="text" name="total" id="myTot" required placeholder="Total" readonly class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     Minimum Payable
-                                    <input type="text" name="minimum" required placeholder="Minimum" class="form-control">
+                                    <input type="text" id="minimum" readonly placeholder="Minimum" class="form-control">
+                                </div>
+                            </div>                            
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    Amount Paid &nbsp;&nbsp; <em class="text-danger text-xs" id="amtErr"></em>
+                                    <input type="text" name="amount" id="myAmt" required placeholder="Amount" class="form-control" onkeyup="checkAmt()">
+                                    <input type="text" name="status" id="myStat" hidden>
                                 </div>
                             </div>
                         </div>
                         <br><br>
                         <div class="text-center">
                             <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <button class="btn btn-sm btn-primary" type="submit" name="addFee" class="form-control">Add</button>
+                            <button class="btn btn-sm btn-primary" id="btnSubmit" type="submit" name="addPayment" class="form-control">Add</button>
                         </div>
                     </form>
                 </div>
@@ -291,49 +301,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <?php include('./includes/javascripts.php'); ?>
 
     <script>
-        let data;
+        let fees, min, tot;
 
         $(function () {
             $("#example1").DataTable();
 
-            data = <?php echo json_encode($result); ?>;
+            fees = <?php echo json_encode($result2); ?>;
 
             // console.log(data);
         });
 
-        $("#edit").on('show.bs.modal', function (e) {
-            
-            var Id = $(e.relatedTarget).data('myid');
+        function loadDetails(){
+            var Id = $('#myPeriod').val();
 
             // console.log(obj);
-			$('#eId').val(Id);
             let info;
-            data.forEach(r => {
+            fees.forEach(r => {
                 if(r.id == Id){
                     info = r;
                 }
             });
 
-            $('#elevy').val(info.levy);
-            $('#etuition').val(info.tuition);
-            $('#etotal').val(info.total);
-            $('#emin').val(info.minimum);
+            $('#myLevy').val(info.levy);
+            $('#myTuition').val(info.tuition);
+            $('#minimum').val(info.minimum);
 
-        });
+            min = info.minimum;
+            tot = info.total;
+        }
 
-        $("#delete").on('show.bs.modal', function (e) {
-            
-            var Id = $(e.relatedTarget).data('myid');
+        function verifyStud(){
 
-            // console.log(obj);
-			$('#myId2').val(Id);
-        });
+        }
 
-        function calcTotal(val1, val2, answer){
-            let a = Number($('#'+val1).val() ?? 0);
-            let b = Number($('#'+val2).val() ?? 0);
+        function checkAmt(){
+            let amt = $('#myAmt').val();
 
-            $('#'+answer).val(a + b);
+            if(Number(amt) < Number(min)){
+                console.log(amt, min);
+                $('#amtErr').html('Amount Less than Minimum');
+                $('#btnSubmit').attr('disabled', true);
+            }
+            else if(Number(amt) > Number(tot)){
+                console.log(amt, tot);
+                $('#amtErr').html('Amount Greater than Total');
+                $('#btnSubmit').attr('disabled', true);
+            }
+            else{
+                console.log(min, amt, tot);
+                $('#amtErr').html('');
+                $('#btnSubmit').attr('disabled', false);
+                
+                (Number(amt) == Number(tot)) ? $('#myStat').val('paid') : $('#myStat').val('owing');
+            }
         }
 
     </script>
