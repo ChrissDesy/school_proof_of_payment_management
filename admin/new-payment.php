@@ -152,7 +152,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Student
-                                    <select name="student" required class="form-control" onchange="verifyStud()">
+                                    <select name="student" id="myStud" required class="form-control" onchange="verifyStud()">
                                         <option value="" selected disabled>choose...</option>
                                         <?php foreach ($result1 as $r) {
                                             ?>
@@ -165,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    Fees
+                                    Fees &nbsp;&nbsp; <em class="text-danger text-xs" id="owingErr"></em>&nbsp; <em class="text-success text-xs" id="paidErr"></em>
                                     <select name="fee" id="myPeriod" required class="form-control" onchange="loadDetails()">
                                         <option value="" selected disabled>choose...</option>
                                         <?php foreach ($result2 as $r) {
@@ -312,7 +312,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         });
 
         function loadDetails(){
-            var Id = $('#myPeriod').val();
+            let Id = $('#myPeriod').val();
+
+            if(!Id) return false;
 
             // console.log(obj);
             let info;
@@ -328,10 +330,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             min = info.minimum;
             tot = info.total;
+
+            verifyStud();
         }
 
         function verifyStud(){
+            let stud = $('#myStud').val();
+            let fee = $('#myPeriod').val();
 
+            if(stud && fee){
+                // console.log(stud, fee);
+                $.ajax({
+                    url: './controllers/verifyStudentPayment.php',
+                    method: 'POST',
+                    data: {student: stud, fee: fee},
+                    success: function(resp){
+                        // console.log(JSON.parse(resp));
+                        let data = JSON.parse(resp);
+
+                        if(data.length == 0){
+                            $('#paidErr').html('');
+                            $('#owingErr').html('');
+                            $('#btnSubmit').attr('disabled', false);
+                            return false;
+                        }
+
+                        let info = data[0];
+
+                        if(info.status == 'owing'){
+                            let bal = Number(info.total) - Number(info.amount);
+                            $('#owingErr').html('Student owing ' + bal +' for this period.');
+                            $('#paidErr').html('');
+                            $('#btnSubmit').attr('disabled', false);
+                        }
+                        else if(info.status == 'paid'){
+                            $('#owingErr').html('');
+                            $('#paidErr').html('Student paid in full for period. ('+info.date_modified+')');
+                            $('#btnSubmit').attr('disabled', true);
+                        }
+                        else{
+                            $('#paidErr').html('');
+                            $('#owingErr').html('');
+                            $('#btnSubmit').attr('disabled', false);
+                        }
+                    },
+                    error: function(err){
+                        console.log(err.responseText);
+                    }
+                });
+            }
         }
 
         function checkAmt(){
