@@ -2,20 +2,21 @@
 
     // sql queries
     $sql1 = "
-        SELECT 
-            date_acquired, make, model, serial_number, asset_number, name
-        FROM assets, types
-        WHERE assets.status = 'active' and assets.type = types.id
-        ORDER BY date_acquired DESC
+        SELECT
+            t.id, t.date, t.amount, s.fname, s.lname, f.year, f.period
+        FROM transactions AS t
+        LEFT JOIN students AS s ON t.student = s.id
+        INNER JOIN fees AS f ON t.fee = f.id
+        ORDER BY t.date DESC
         LIMIT 5;
     ";
 
     $sql2 = "
         SELECT
             (SELECT COUNT(*) FROM users) AS users,
-            (SELECT COUNT(*) FROM assets) AS assets,
-            (SELECT COUNT(*) FROM types WHERE status = 'active') AS types,
-            (SELECT COUNT(DISTINCT assets) FROM holders ) AS assigned
+            (SELECT COUNT(*) FROM students) AS students,
+            (SELECT COUNT(*) FROM fees) AS fees,
+            (SELECT COUNT(*) FROM payments WHERE status = 'owing') AS owing
     ";
 
     // sql statements
@@ -26,7 +27,7 @@
     $statement->execute();
     $statement2->execute();
 
-    $assets = $statement->fetchAll();
+    $transactions = $statement->fetchAll();
     $stats = $statement2->fetchAll();
 
 ?>

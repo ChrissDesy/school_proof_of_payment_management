@@ -1,13 +1,13 @@
 <?php
 
     session_start();
-    //include('./includes/dbcon.php');
+    include('./includes/dbcon.php');
 
     if(!isset($_SESSION['username'])){
         echo "<script type='text/javascript'> document.location ='./controllers/logout.php'; </script>";
     }
 
-    // include('./controllers/homeCon.php');
+    include('./controllers/homeCon.php');
 
 ?>
 
@@ -63,14 +63,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <!-- Info boxes -->
                     <div class="row">
+                        
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user-graduate"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Students</span>
+                                <span class="info-box-number"><?php echo $stats[0]['students']; ?></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box">
                             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-inbox"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">New Payments</span>
+                                <span class="info-box-text">Fees Structures</span>
                                 <span class="info-box-number">
-                                    <?php echo 10; ?>
+                                    <?php echo $stats[0]['fees']; ?>
                                 </span>
                             </div>
                             <!-- /.info-box-content -->
@@ -84,38 +99,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-money-check"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Verified</span>
-                                <span class="info-box-number"><?php echo 7; ?></span>
-                            </div>
-                            <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
                             <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar-times"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Denied</span>
-                                <span class="info-box-number"><?php echo 9; ?></span>
+                                <span class="info-box-text">Students Owing</span>
+                                <span class="info-box-number"><?php echo $stats[0]['owing']; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
                             <!-- /.info-box -->
                         </div>
                         <!-- /.col -->
-                        
+
                         <div class="col-12 col-sm-6 col-md-3">
                             <div class="info-box mb-3">
-                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user-graduate"></i></span>
+                            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Students</span>
-                                <span class="info-box-number"><?php echo 20; ?></span>
+                                <span class="info-box-text">Users</span>
+                                <span class="info-box-number"><?php echo $stats[0]['users']; ?></span>
                             </div>
                             <!-- /.info-box-content -->
                             </div>
@@ -149,23 +151,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <table class="table m-0">
                                         <thead>
                                             <tr>
-                                                <th>Student</th>
-                                                <th>Registration</th>
-                                                <th>Amount</th>
+                                                <th>Reference</th>
                                                 <th>Date&nbsp;Paid</th>
-                                                <th>Term - Year</th>
-                                                <th>Method</th>
+                                                <th>Student</th>                                                
+                                                <th>Amount</th>
+                                                <th>Period</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><?php echo 'Chriss Desy' ?></td>
-                                                <td><?php echo 'A1234' ?></td>
-                                                <td><?php echo 'USD$100' ?></td>
-                                                <td><?php echo '2022-07-09' ?></td>
-                                                <td><?php echo '2 - 2022' ?></td>
-                                                <td><?php echo 'ECOCASH' ?></td>
-                                            </tr>
+                                            <?php foreach ($transactions as $r) {
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $r['id']; ?></td>
+                                                    <td><?php echo $r['date']; ?></td>
+                                                    <td><?php echo $r['fname']. ' '. $r['lname']; ?></td>
+                                                    <td><?php echo 'US$'.$r['amount']; ?></td>
+                                                    <td><?php echo $r['year']. ' / Term-'. $r['period']; ?></td>
+                                                </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -176,7 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- <a href="./new-item.php" class="btn btn-sm btn-outline-info float-left">
                                     <i class="fas fa-plus mr-2"></i> View New
                                 </a> -->
-                                <a href="./new-item.php" class="btn btn-sm btn-outline-secondary float-right">
+                                <a href="./new-payment.php" class="btn btn-sm btn-outline-secondary float-right">
                                     <i class="fas fa-list-ul mr-2"></i> View All
                                 </a>
                             </div>
