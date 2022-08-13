@@ -6,35 +6,35 @@
     $uType = $_SESSION['utype'];
 
     if(
-        $url == '/pop-mgnt/admin/new-payment.php'
+        strpos($url, '/pop-mgnt/admin/new-payment.php') !== false
     ){
         $showDrop = 'payments';
     }
     else if(
-        $url == '/pop-mgnt/admin/new-student.php' ||
-        $url == '/pop-mgnt/admin/edit-student.php' ||
-        $url == '/pop-mgnt/admin/students-list.php'
+        strpos($url, '/pop-mgnt/admin/new-student.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/edit-student.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/students-list.php') !== false
     ){
         $showDrop = 'students';
     }
     else if(
-        $url == '/pop-mgnt/admin/new-user.php' ||
-        $url == '/pop-mgnt/admin/edit-user.php' ||
-        $url == '/pop-mgnt/admin/users-list.php'
+        strpos($url, '/pop-mgnt/admin/new-user.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/edit-user.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/users-list.php') !== false
     ){
         $showDrop = 'users';
     }
     else if(
-        $url == '/pop-mgnt/admin/report1.php' ||
-        $url == '/pop-mgnt/admin/report2.php' ||
-        $url == '/pop-mgnt/admin/report3.php' ||
-        $url == '/pop-mgnt/admin/report4.php' 
+        strpos($url, '/pop-mgnt/admin/report1.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/report2.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/report3.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/report4.php') !== false 
     ){
         $showDrop = 'reports';
     }
     else if(
-        $url == '/pop-mgnt/admin/change-password.php' ||
-        $url == '/pop-mgnt/admin/fees.php'
+        strpos($url, '/pop-mgnt/admin/change-password.php') !== false ||
+        strpos($url, '/pop-mgnt/admin/fees.php') !== false
     ){
         $showDrop = 'settings';
     }
