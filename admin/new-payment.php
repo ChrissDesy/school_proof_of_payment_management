@@ -301,7 +301,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <?php include('./includes/javascripts.php'); ?>
 
     <script>
-        let fees, min, tot;
+        let fees, min, tot, paid = 0;
 
         $(function () {
             $("#example1").DataTable();
@@ -352,6 +352,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             $('#paidErr').html('');
                             $('#owingErr').html('');
                             $('#btnSubmit').attr('disabled', false);
+                            paid = 0;
                             return false;
                         }
 
@@ -359,6 +360,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                         if(info.status == 'owing'){
                             let bal = Number(info.total) - Number(info.amount);
+                            paid = info.amount;
                             $('#owingErr').html('Student owing ' + bal +' for this period.');
                             $('#paidErr').html('');
                             $('#btnSubmit').attr('disabled', false);
@@ -367,11 +369,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             $('#owingErr').html('');
                             $('#paidErr').html('Student paid in full for period. ('+info.date_modified+')');
                             $('#btnSubmit').attr('disabled', true);
+                            paid = 0;
                         }
                         else{
                             $('#paidErr').html('');
                             $('#owingErr').html('');
                             $('#btnSubmit').attr('disabled', false);
+                            paid = 0;
                         }
                     },
                     error: function(err){
@@ -383,23 +387,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         function checkAmt(){
             let amt = $('#myAmt').val();
-
-            if(Number(amt) < Number(min)){
-                console.log(amt, min);
+            // console.log(Number(amt) + paid);
+            if(Number(amt) + Number(paid) < Number(min)){
+                console.log(amt, min, paid);
                 $('#amtErr').html('Amount Less than Minimum');
                 $('#btnSubmit').attr('disabled', true);
             }
-            else if(Number(amt) > Number(tot)){
-                console.log(amt, tot);
+            else if(Number(amt) + Number(paid) > Number(tot)){
+                console.log(amt, tot, paid);
                 $('#amtErr').html('Amount Greater than Total');
                 $('#btnSubmit').attr('disabled', true);
             }
             else{
-                console.log(min, amt, tot);
+                console.log(min, amt, tot, paid);
                 $('#amtErr').html('');
                 $('#btnSubmit').attr('disabled', false);
                 
-                (Number(amt) == Number(tot)) ? $('#myStat').val('paid') : $('#myStat').val('owing');
+                (Number(amt) + Number(paid) == Number(tot)) ? $('#myStat').val('paid') : $('#myStat').val('owing');
             }
         }
 

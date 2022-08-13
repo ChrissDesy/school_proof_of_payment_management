@@ -26,6 +26,7 @@
             $new_amt = ($result[0]['amount'] + $amount);
             $sql2 = 'UPDATE payments SET
                         amount = "'.$new_amt.'",
+                        status = "'.$stat.'",
                         date_modified = "'.$dat2.'"
                     WHERE id = "'.$ref.'"';
 	    
