@@ -1,10 +1,10 @@
 Good day
 
-✔️ Is it possible for our system to have 3 users
+✔️ Is it possible for our system to have 3 users. We have 2 users now
 
-Accounts cleck
-Bursar
-Headmaster
+Accounts cleck - role removed
+✔️ Bursar
+✔️ Headmaster
 
 The accounts clerk captures the payments.
 
@@ -17,7 +17,7 @@ The Headmaster makes reports also and informed decisions on those who paid and n
 ✔️ This system should be not allow overpayment of fees but it has a minimum amount that has to be paid by students who 
     are not able to pay full fees.
 
-On that note the system should be able to generate reports of those who paid full fees and those who did not.
+✔️ On that note the system should be able to generate reports of those who paid full fees and those who did not.
 
 ✔️ This automated system on fees payment is replacing the manual based system that was being used in the school.
 

@@ -152,7 +152,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <?php include('./includes/javascripts.php'); ?>
 
     <script>
-
+        $(function () {
+            $("#example1").DataTable();
+        });
     </script>
     
 </body>
