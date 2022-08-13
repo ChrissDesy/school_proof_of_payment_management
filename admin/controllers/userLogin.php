@@ -58,6 +58,7 @@
                     $_SESSION['uname'] = $r['username'];
                 
                     $mode = 'change';
+                    $uname = $uname;
                 }
                 else{
                     $_SESSION['errorMessage'] = 'Account Disabled or Deleted';
@@ -71,6 +72,33 @@
         else
         {
             $_SESSION['errorMessage'] = 'Enter Username.';
+        }
+    }
+
+    if(isset($_POST['change']))
+    {
+        $uname = $_POST['uname'];
+        $pwd = $_POST['password'];
+        $pwd2 = $_POST['password2'];
+    
+        if($pwd == $pwd2)
+        {   
+
+            $sql2 = 'UPDATE users SET
+                        password = "'.$pwd.'"
+                    WHERE username = "'.$uname.'"';
+	    
+            $query2 = $db->prepare($sql2);   
+            $query2->execute();
+
+            $_SESSION['successMessage'] = 'Password changed.';
+
+            // header("location:./index.php");
+
+        }
+        else
+        {
+            $_SESSION['errorMessage'] = 'Passwords Mismatch.';
         }
     }
 
