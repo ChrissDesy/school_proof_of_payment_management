@@ -12,12 +12,13 @@ Bursar raises invoices and reports sending to the parents.
 
 The Headmaster makes reports also and informed decisions on those who paid and not paid.
 
-The systems shld be able to capture payments, retrieve and delete unnecessary things.
+✔️ The systems shld be able to capture payments, retrieve and delete unnecessary things.
 
-This system should be not allow overpayment of fees but it has a minimum amount that has to be paid by students who are not able to pay full fees.
+✔️ This system should be not allow overpayment of fees but it has a minimum amount that has to be paid by students who 
+    are not able to pay full fees.
 
 On that note the system should be able to generate reports of those who paid full fees and those who did not.
 
-This automated system on fees payment is replacing the manual based system that was being used in the school.
+✔️ This automated system on fees payment is replacing the manual based system that was being used in the school.
 
 ✔️ The systems uses the USD$ ONLY
