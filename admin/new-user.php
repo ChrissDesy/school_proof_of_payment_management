@@ -130,7 +130,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <option value="" selected disabled>choose...</option>
                                                     <option value="Bursar">Bursar</option>
                                                     <option value="Head">Headmaster</option>
-                                                    <!-- <option value="Clerk">Clerk</option> -->
+                                                    <option value="Admin">System Admin</option>
                                                 </select>
                                             </div>
                                         </div>
