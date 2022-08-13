@@ -143,12 +143,12 @@
                                 <p>Owing</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="report4.php" class="nav-link <?php if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report4.php') echo 'active'; ?>">
+                        <!-- <li class="nav-item">
+                            <a href="report4.php" class="nav-link <?php //if($_SERVER['PHP_SELF'] == '/pop-mgnt/admin/report4.php') echo 'active'; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Student Balances</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-item has-treeview <?php if($showDrop == 'users') echo 'menu-open'; ?>">
