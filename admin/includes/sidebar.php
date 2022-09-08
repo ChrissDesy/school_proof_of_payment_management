@@ -42,6 +42,13 @@
         $showDrop = '';
     }
 
+    if($_SESSION['utype'] == 'Bursar'){
+        $pic = '../dist/img/bursar.jpeg';
+    }
+    else{
+        $pic = '../dist/img/logo.jpg';
+    }
+
 ?>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -57,7 +64,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-            <img src="../dist/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
+                <img src="<?php echo $pic; ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
             <a href="#" class="d-block"><?php echo $_SESSION['username'] ?? 'User'; ?></a>
