@@ -171,13 +171,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Levy
-                                    <input type="text" name="levy" id="myLevy" required placeholder="Levy" class="form-control" onkeyup="calcTotal('myLevy', 'myTuition', 'myTot')">
+                                    <input type="number" name="levy" id="myLevy" required placeholder="Levy" class="form-control" onkeyup="calcTotal('myLevy', 'myTuition', 'myTot')">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Tuition
-                                    <input type="text" name="tuition" id="myTuition" required placeholder="Tuition" class="form-control" onkeyup="calcTotal('myLevy', 'myTuition', 'myTot')">
+                                    <input type="number" name="tuition" id="myTuition" required placeholder="Tuition" class="form-control" onkeyup="calcTotal('myLevy', 'myTuition', 'myTot')">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -189,7 +189,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Minimum Payable
-                                    <input type="text" name="minimum" required placeholder="Minimum" class="form-control">
+                                    <input type="number" name="minimum" required placeholder="Minimum" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -224,13 +224,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Levy
-                                    <input type="text" name="levy" id="elevy" required placeholder="Levy" class="form-control" onkeyup="calcTotal('elevy', 'etuition', 'etotal')">
+                                    <input type="number" name="levy" id="elevy" required placeholder="Levy" class="form-control" onkeyup="calcTotal('elevy', 'etuition', 'etotal')">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Tuition
-                                    <input type="text" name="tuition" id="etuition" required placeholder="Tuition" class="form-control" onkeyup="calcTotal('elevy', 'etuition', 'etotal')">
+                                    <input type="number" name="tuition" id="etuition" required placeholder="Tuition" class="form-control" onkeyup="calcTotal('elevy', 'etuition', 'etotal')">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -242,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <div class="col-md-12">
                                 <div class="form-group">
                                     Minimum Payable
-                                    <input type="text" name="minimum" id="emin" required placeholder="Minimum" class="form-control">
+                                    <input type="number" name="minimum" id="emin" required placeholder="Minimum" class="form-control">
                                 </div>
                             </div>
                         </div>
